@@ -1,0 +1,15 @@
+# Data and Images
+train_images/
+test_images/
+*.zip
+*.csv
+cache/
+splits/
+
+# Generated submissons
+submissions/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/

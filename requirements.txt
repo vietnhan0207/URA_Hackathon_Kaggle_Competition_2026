@@ -1,0 +1,24 @@
+# URA Hackathon 2026 — conda env `ura` (Python 3.11)
+# Core
+pandas
+numpy
+scikit-learn
+pyarrow
+tqdm
+joblib
+rapidfuzz
+unidecode
+
+# Imaging
+pillow
+opencv-python
+
+# OCR engines (bake-off — Phase 2)
+# torch / torchvision installed separately with CUDA wheel:
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+easyocr
+vietocr
+# paddlepaddle-gpu + paddleocr installed separately (Windows wheels):
+#   pip install paddlepaddle-gpu==2.6.1  (or paddlepaddle for CPU)
+#   pip install paddleocr
+pytesseract   # requires Tesseract-OCR binary on PATH (vie traineddata)
