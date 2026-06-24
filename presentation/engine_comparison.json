@@ -1,0 +1,157 @@
+{
+  "gt_diac_ref": 0.2853,
+  "engines": [
+    {
+      "name": "EasyOCR (E2E)",
+      "detector": "CRAFT (built-in)",
+      "n": 300,
+      "cer": 0.504,
+      "ocr_term": 0.496,
+      "eng_diac": 0.2246,
+      "gt_diac": 0.2853,
+      "prod_f1": 0.5523,
+      "composite": 0.5298,
+      "notes": "CRAFT-based E2E; val only"
+    },
+    {
+      "name": "RapidOCR (E2E)",
+      "detector": "DBNet ONNX (built-in)",
+      "n": 300,
+      "cer": 0.4319,
+      "ocr_term": 0.5681,
+      "eng_diac": 0.0007,
+      "gt_diac": 0.2203,
+      "prod_f1": 0.6842,
+      "composite": 0.6378,
+      "notes": "Lightweight ONNX E2E; val only"
+    },
+    {
+      "name": "PaddleOCR (E2E)",
+      "detector": "PP-OCR det (built-in)",
+      "n": 2980,
+      "cer": 0.4933,
+      "ocr_term": 0.5067,
+      "eng_diac": 0.0239,
+      "gt_diac": 0.2267,
+      "prod_f1": 0.6338,
+      "composite": 0.583,
+      "notes": "PP-OCR v3 E2E"
+    },
+    {
+      "name": "VietOCR base",
+      "detector": "CRAFT",
+      "n": 4892,
+      "cer": 0.4373,
+      "ocr_term": 0.5627,
+      "eng_diac": 0.1793,
+      "gt_diac": 0.205,
+      "prod_f1": 0.6314,
+      "composite": 0.6039,
+      "notes": "Pre-trained vgg_transformer; no fine-tuning"
+    },
+    {
+      "name": "VietOCR-FT (ours) ★",
+      "detector": "CRAFT",
+      "n": 4892,
+      "cer": 0.4015,
+      "ocr_term": 0.5985,
+      "eng_diac": 0.2148,
+      "gt_diac": 0.205,
+      "prod_f1": 0.6316,
+      "composite": 0.6184,
+      "notes": "Fine-tuned on ext. Vi dataset + competition train"
+    },
+    {
+      "name": "VietOCR-FTdb",
+      "detector": "RapidOCR DB ONNX",
+      "n": 4891,
+      "cer": 0.4688,
+      "ocr_term": 0.5312,
+      "eng_diac": 0.2208,
+      "gt_diac": 0.205,
+      "prod_f1": 0.6055,
+      "composite": 0.5758,
+      "notes": "CRAFT swapped → DB detector + upscale small thumbnails"
+    },
+    {
+      "name": "VietOCR-FTup",
+      "detector": "CRAFT + upscale",
+      "n": 4891,
+      "cer": 0.4167,
+      "ocr_term": 0.5833,
+      "eng_diac": 0.216,
+      "gt_diac": 0.205,
+      "prod_f1": 0.6358,
+      "composite": 0.6148,
+      "notes": "CRAFT pipeline + upscale small thumbnails"
+    },
+    {
+      "name": "VietOCR-FTup2",
+      "detector": "CRAFT + upscale v2",
+      "n": 4891,
+      "cer": 0.4121,
+      "ocr_term": 0.5879,
+      "eng_diac": 0.2193,
+      "gt_diac": 0.205,
+      "prod_f1": 0.6311,
+      "composite": 0.6138,
+      "notes": "CRAFT pipeline + stronger upscale"
+    }
+  ],
+  "cv_lb": [
+    {
+      "tag": "v2",
+      "config": "PaddleOCR + product head + empty-gate",
+      "cv": null,
+      "lb": 0.589
+    },
+    {
+      "tag": "v3",
+      "config": "PaddleOCR + product head (min12/gate0.55, all labels)",
+      "cv": null,
+      "lb": 0.5803
+    },
+    {
+      "tag": "v4",
+      "config": "VietOCR base + product head (min12/gate0.55)",
+      "cv": null,
+      "lb": 0.5898
+    },
+    {
+      "tag": "v6",
+      "config": "VietOCR-FT + product head (min5/gate0.45)",
+      "cv": 0.59,
+      "lb": 0.603
+    },
+    {
+      "tag": "v7",
+      "config": "VietOCR-FT + product head (min12/gate0.55)",
+      "cv": 0.597,
+      "lb": 0.6217
+    },
+    {
+      "tag": "v8",
+      "config": "VietOCR-FT + product head + empty-gate",
+      "cv": 0.597,
+      "lb": 0.6232
+    },
+    {
+      "tag": "ftup2",
+      "config": "VietOCR-FTup2 + product head (min12/gate0.55)",
+      "cv": null,
+      "lb": 0.6209
+    },
+    {
+      "tag": "v10",
+      "config": "VietOCR-FT + CalibratedRuleHead (5-fold CV)",
+      "cv": 0.6142,
+      "lb": 0.6685
+    },
+    {
+      "tag": "mix",
+      "config": "Our OCR + teammate product (post-hoc)",
+      "cv": null,
+      "lb": 0.6959
+    }
+  ]
+}
